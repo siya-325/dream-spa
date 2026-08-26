@@ -1,0 +1,210 @@
+@import 'tailwindcss';
+@import 'shadcn/tailwind.css';
+
+/*
+  Dream Spa — design tokens
+  Light theme only. Warm paper neutrals + deep sage ink + a toned-down brand red accent.
+  The saturated brand red (--brand) is reserved for the logo mark itself.
+*/
+
+@theme inline {
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-brand: var(--brand);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-btn-primary: var(--btn-primary);
+  --color-btn-primary-hover: var(--btn-primary-hover);
+  --color-btn-primary-foreground: var(--btn-primary-foreground);
+  --color-light-red-bg: var(--bg-light-red);
+  --color-light-red-fg: var(--fg-light-red);
+  --color-light-red-border: var(--border-light-red);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --color-sand: var(--sand);
+  --color-sand-deep: var(--sand-deep);
+  --color-clay: var(--clay);
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-fraunces), ui-serif, Georgia, serif;
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  color-scheme: light;
+
+  /* Surfaces */
+  --background: oklch(0.985 0.006 82);
+  --foreground: oklch(0.268 0.014 45);
+  --card: oklch(0.997 0.003 84);
+  --card-foreground: oklch(0.268 0.014 45);
+  --popover: oklch(0.997 0.003 84);
+  --popover-foreground: oklch(0.268 0.014 45);
+
+  /* Warm layers */
+  --sand: oklch(0.958 0.012 82);
+  --sand-deep: oklch(0.925 0.017 80);
+  --clay: oklch(0.878 0.02 74);
+
+  /* Primary & Buttons — Light Soft Red (#f6eaea) with Rich Red Text (#914949) */
+  /* CHANGE THIS VALUE TO CUSTOMIZE THE BUTTON & PRIMARY ACCENT COLOR */
+  --primary: #B97474;
+  --primary-foreground: #f3f0f0;
+
+  /* Dedicated Button Variables */
+  --btn-primary: var(--primary);
+  --btn-primary-hover: #BD7E7E;
+  --btn-primary-foreground: var(--primary-foreground);
+
+  /* Section & Footer Background — Rich Terracotta Red (#914949) */
+  /* CHANGE THIS VALUE TO CUSTOMIZE THE BACKGROUND FOR 'THE VISIT' & FOOTER */
+  --bg-light-red: #914949;
+  --fg-light-red: #ffffff;
+  --border-light-red: rgba(255, 255, 255, 0.2);
+
+  --secondary: oklch(0.958 0.012 82);
+  --secondary-foreground: oklch(0.33 0.018 45);
+
+  --muted: oklch(0.951 0.011 82);
+  --muted-foreground: oklch(0.508 0.017 55);
+
+  /* Accent — brand red (#914949) */
+  --accent: #914949;
+  --accent-foreground: #ffffff;
+  --accent-soft: #f6eaea;
+
+  /* True brand red */
+  --brand: #914949;
+
+  --destructive: oklch(0.513 0.158 28);
+
+  --border: oklch(0.9 0.013 80);
+  --border-strong: oklch(0.83 0.018 76);
+  --input: oklch(0.9 0.013 80);
+  --ring: oklch(0.513 0.158 28);
+
+  --chart-1: oklch(0.513 0.158 28);
+  --chart-2: oklch(0.513 0.158 28);
+  --chart-3: oklch(0.878 0.02 74);
+  --chart-4: oklch(0.508 0.017 55);
+  --chart-5: oklch(0.925 0.017 80);
+
+  --radius: 0.125rem;
+
+  --sidebar: oklch(0.958 0.012 82);
+  --sidebar-foreground: oklch(0.268 0.014 45);
+  --sidebar-primary: oklch(0.513 0.158 28);
+  --sidebar-primary-foreground: oklch(0.985 0.006 82);
+  --sidebar-accent: oklch(0.925 0.017 80);
+  --sidebar-accent-foreground: oklch(0.268 0.014 45);
+  --sidebar-border: oklch(0.9 0.013 80);
+  --sidebar-ring: oklch(0.513 0.158 28);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-synthesis-weight: none;
+  }
+
+  ::selection {
+    background-color: color-mix(in oklab, var(--accent) 20%, transparent);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 3px;
+  }
+}
+
+@utility shell {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 88rem;
+  padding-inline: 1.25rem;
+
+  @media (width >=48rem) {
+    padding-inline: 2.5rem;
+  }
+
+  @media (width >=80rem) {
+    padding-inline: 4rem;
+  }
+}
+
+/* Editorial small-caps label */
+@utility eyebrow {
+  font-size: 0.6875rem;
+  line-height: 1;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+@utility display {
+  font-family: var(--font-serif), Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  line-height: 1.02;
+}
+
+/* Fine paper grain for large cream fields */
+@utility grain {
+  background-image: radial-gradient(color-mix(in oklab, var(--clay) 60%, transparent) 0.5px,
+      transparent 0.5px);
+  background-size: 4px 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
