@@ -15,18 +15,22 @@ export const metadata: Metadata = {
 
 const principles = [
   {
+    number: "01",
     title: "We ask before we begin",
     body: "Every session starts with a short conversation — where you are sore, how much pressure you enjoy, how much time you have. The treatment is built from your answers, not from a script.",
   },
   {
+    number: "02",
     title: "One guest at a time",
     body: "We keep the room quiet and the schedule unhurried. You will not be moved along to make space for the next appointment, and you will not be sold anything on the way out.",
   },
   {
+    number: "03",
     title: "Trained hands, traditional technique",
     body: "Our therapists work in classic Swedish, deep tissue and ayurvedic traditions. The technique is conventional and well practised; what changes is how it is applied to you.",
   },
   {
+    number: "04",
     title: "Clean, private, predictable",
     body: "Fresh linen for every guest, private treatment rooms, and clear pricing discussed before the session begins. No surprises at the counter.",
   },
@@ -103,16 +107,24 @@ export default function AboutPage() {
             title="Four things we do not compromise on."
           />
 
-          <ul className="mt-14 grid gap-x-16 gap-y-12 sm:grid-cols-2">
+          <ul className="mt-14 grid gap-6 sm:grid-cols-2 lg:gap-8">
             {principles.map((principle, index) => (
               <Reveal as="li" key={principle.title} index={index}>
-                <div className="flex flex-col border-t border-border-strong pt-6">
-                  <h3 className="display text-xl sm:text-2xl">
-                    {principle.title}
-                  </h3>
-                  <p className="mt-4 max-w-md text-sm leading-relaxed text-pretty text-muted-foreground">
-                    {principle.body}
-                  </p>
+                <div className="group flex h-full flex-col justify-between rounded-2xl bg-background p-8 sm:p-10">
+                  <div>
+                    <div className="flex items-center justify-between">
+                      <span className="eyebrow text-xs font-semibold text-accent uppercase tracking-widest">
+                        {principle.number}
+                      </span>
+                      <span className="h-2 w-2 rounded-full bg-accent/30 group-hover:bg-accent transition-colors" />
+                    </div>
+                    <h3 className="display mt-6 text-xl sm:text-2xl font-serif text-foreground">
+                      {principle.title}
+                    </h3>
+                    <p className="mt-4 text-sm leading-relaxed text-pretty text-muted-foreground">
+                      {principle.body}
+                    </p>
+                  </div>
                 </div>
               </Reveal>
             ))}

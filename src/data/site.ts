@@ -37,9 +37,22 @@ export const site = {
       "https://www.google.com/maps/dir/?api=1&destination=Sanskrut+Galleria,+Subhash+Chowk,+Gurukul,+Ahmedabad,+Gujarat+380052",
   },
   social: [
-    { label: "Instagram", href: "https://instagram.com" },
-    { label: "Facebook", href: "https://facebook.com" },
-    { label: "Google", href: "https://share.google/O6Dy4YQyRecYsC0YH" },
+    {
+      label: "Instagram",
+      href: "https://www.instagram.com/dream_spa_gurukul/?hl=en",
+    },
+    {
+      label: "Facebook",
+      href: "https://www.facebook.com/people/Dream-Spa/61553850848736/?locale=fo_FO#",
+    },
+    {
+      label: "Google",
+      href: "https://share.google/O6Dy4YQyRecYsC0YH",
+    },
+    {
+      label: "Justdial",
+      href: "https://www.justdial.com/Ahmedabad/Dream-Spa-Behind-Hanuman-Mandir-Gurukul/079PXX79-XX79-231108151707-L5N9_BZDET",
+    },
   ],
 } as const
 

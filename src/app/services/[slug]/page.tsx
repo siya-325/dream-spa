@@ -5,7 +5,7 @@ import type { Metadata } from "next"
 import { ArrowLeft, Check, MessageCircle, Phone } from "lucide-react"
 
 import { ServiceCard } from "@/components/services/service-card"
-import { LocationPanel } from "@/components/shared/location-panel"
+import { CtaBand } from "@/components/shared/cta-band"
 import { buttonVariants } from "@/components/ui/button"
 import { Reveal } from "@/components/ui/reveal"
 import { SectionHeading } from "@/components/ui/section-heading"
@@ -51,7 +51,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
 
   return (
     <>
-      <div className="shell pt-8">
+      <div className="shell pt-24 sm:pt-28 lg:pt-32">
         <Link
           href="/services"
           className="eyebrow inline-flex items-center gap-2 text-muted-foreground transition-colors hover:text-accent"
@@ -144,27 +144,39 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         </div>
       </section>
 
-      <section className="border-y border-border bg-sand py-20 lg:py-28">
+      <section className="bg-background py-20 lg:py-28">
         <div className="shell">
           <SectionHeading
             eyebrow="What to expect"
             title="How the session runs, start to finish."
           />
-          <ol className="mt-14 grid gap-x-12 gap-y-10 sm:grid-cols-3">
-            {service.expect.map((step, index) => (
-              <Reveal as="li" key={step.title} index={index}>
-                <div className="flex flex-col border-t border-border-strong pt-6">
-                  <span className="eyebrow text-accent">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <h3 className="display mt-4 text-2xl">{step.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-pretty text-muted-foreground">
-                    {step.body}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
-          </ol>
+          <div className="relative mt-12 px-4 sm:px-8">
+            {/* Connecting line at vertical middle with a dot at the start */}
+            <div
+              aria-hidden="true"
+              className="hidden sm:block absolute top-1/2 inset-x-0 -translate-y-1/2 h-px bg-accent z-0"
+            >
+              <span className="absolute top-1/2 left-0 -translate-y-1/2 size-2.5 rounded-full bg-accent z-20" />
+            </div>
+
+            <ol className="relative z-10 grid gap-6 sm:grid-cols-3 lg:gap-8">
+              {service.expect.map((step, index) => (
+                <Reveal as="li" key={step.title} index={index}>
+                  <div className="flex flex-col h-full rounded-2xl bg-sand p-8 sm:p-10">
+                    <span className="eyebrow text-xs font-semibold uppercase tracking-widest text-accent">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <h3 className="display mt-4 font-serif text-2xl font-medium text-foreground">
+                      {step.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-relaxed text-pretty text-muted-foreground">
+                      {step.body}
+                    </p>
+                  </div>
+                </Reveal>
+              ))}
+            </ol>
+          </div>
         </div>
       </section>
 
@@ -184,9 +196,11 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         </div>
       </section>
 
-      <div className="border-t border-border pt-4">
-        <LocationPanel />
-      </div>
+      <CtaBand
+        eyebrow="Reserve a Session"
+        title={`Book your ${service.name}.`}
+        description="Call or WhatsApp us to confirm your preferred therapist, treatment and arrival time."
+      />
     </>
   )
 }

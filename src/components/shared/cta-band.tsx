@@ -35,10 +35,13 @@ export function CtaBand({
               </p>
             </div>
 
-            <div className="flex shrink-0 flex-col gap-3 sm:flex-row lg:flex-col">
+            <div className="grid shrink-0 grid-cols-1 gap-3 sm:grid-cols-2 lg:flex lg:flex-col">
               <a
                 href={site.phone.href}
-                className={cn(buttonVariants({ variant: "primary", size: "lg" }))}
+                className={cn(
+                  buttonVariants({ variant: "primary", size: "lg" }),
+                  "sm:col-span-1",
+                )}
               >
                 <Phone aria-hidden="true" />
                 {site.phone.display}
@@ -47,20 +50,25 @@ export function CtaBand({
                 href={site.phone.whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={cn(buttonVariants({ variant: "outline", size: "lg" }))}
+                className={cn(
+                  buttonVariants({ variant: "outline", size: "lg" }),
+                  "sm:col-span-1",
+                )}
               >
                 <MessageCircle aria-hidden="true" />
                 Message on WhatsApp
               </a>
-              <Link
-                href="/contact"
-                className={cn(
-                  buttonVariants({ variant: "link", size: "sm" }),
-                  "h-auto justify-start px-0 lg:mt-1",
-                )}
-              >
-                Directions &amp; opening hours
-              </Link>
+              <div className="flex justify-start sm:col-span-2 sm:justify-center lg:justify-start">
+                <Link
+                  href="/contact"
+                  className={cn(
+                    buttonVariants({ variant: "link", size: "sm" }),
+                    "h-auto px-0 lg:mt-1",
+                  )}
+                >
+                  Directions &amp; opening hours
+                </Link>
+              </div>
             </div>
           </div>
         </Reveal>

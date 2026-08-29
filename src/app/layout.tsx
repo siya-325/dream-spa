@@ -2,6 +2,8 @@ import { Analytics } from "@vercel/analytics/next"
 import type { Metadata, Viewport } from "next"
 import { Fraunces, Inter } from "next/font/google"
 
+import { BackToTop } from "@/components/layout/back-to-top"
+import { FloatingQuickActions } from "@/components/layout/floating-quick-actions"
 import { SiteFooter } from "@/components/layout/site-footer"
 import { SiteHeader } from "@/components/layout/site-header"
 import { site } from "@/data/site"
@@ -83,6 +85,8 @@ export default function RootLayout({
         <main id="main" className="flex-1">
           {children}
         </main>
+        <FloatingQuickActions />
+        <BackToTop />
         <SiteFooter />
         {process.env.NODE_ENV === "production" && <Analytics />}
       </body>

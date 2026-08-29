@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, HeartHandshake, ShieldCheck, Sparkles } from "lucide-react"
 
 import { Reveal } from "@/components/ui/reveal"
 import { buttonVariants } from "@/components/ui/button"
@@ -8,82 +8,97 @@ import { cn } from "@/lib/utils"
 
 const principles = [
   {
-    title: "We ask before we begin",
-    body: "Pressure, oil and focus areas are decided in conversation — every single visit, not just the first one.",
+    icon: HeartHandshake,
+    title: "Personalised Consultation",
+    body: "Pressure, oil blend, and focus areas are decided in conversation — every single visit, not just your first.",
   },
   {
-    title: "Trained therapists only",
-    body: "Our team is trained in classical massage technique and traditional ayurvedic therapy, and works to a consistent standard.",
+    icon: ShieldCheck,
+    title: "Trained Therapists",
+    body: "Our team is trained in classical massage techniques and traditional ayurvedic therapies to ensure consistent excellence.",
   },
   {
-    title: "Private, clean rooms",
-    body: "Fresh linen for every guest, individual rooms and a door that stays closed for the length of your session.",
+    icon: Sparkles,
+    title: "Private & Clean Suites",
+    body: "Fresh linen for every guest, private sanitized suites, and complete quiet for the full duration of your treatment.",
   },
 ]
 
 export function Intro() {
   return (
     <section className="bg-sand py-20 lg:py-28">
-      <div className="shell">
-        <div className="flex flex-col gap-14 lg:flex-row lg:gap-20">
-          <Reveal className="lg:w-[40%]">
-            <figure className="relative aspect-3/4 overflow-hidden bg-sand-deep">
+      <div className="shell flex flex-col gap-16 lg:gap-20">
+        {/* Top Row: Image on Left, Heading & Expanded Description on Right */}
+        <div className="flex flex-col gap-12 lg:flex-row lg:items-center lg:gap-16">
+          {/* Image Left */}
+          <Reveal className="lg:w-1/2">
+            <figure className="relative aspect-[4/3] sm:aspect-[16/10] overflow-hidden rounded-2xl border border-clay/40 bg-sand-deep shadow-md">
               <Image
                 src="/images/about-reception.png"
                 alt="The Dream Spa reception area with warm oak furniture and dried flowers"
                 fill
-                sizes="(min-width: 1024px) 40vw, 100vw"
+                sizes="(min-width: 1024px) 50vw, 100vw"
                 className="object-cover"
               />
             </figure>
           </Reveal>
 
-          <div className="flex flex-col lg:w-[60%] lg:pt-6">
+          {/* Heading & Description Right */}
+          <div className="flex flex-col lg:w-1/2">
             <Reveal>
               <span className="eyebrow flex items-center gap-3 text-muted-foreground">
                 <span aria-hidden="true" className="h-px w-8 bg-accent" />
                 Our approach
               </span>
-              <h2 className="display mt-6 text-3xl text-balance sm:text-4xl lg:text-[2.75rem]">
+              <h2 className="display mt-6 text-3xl text-balance sm:text-4xl lg:text-[2.75rem] lg:leading-[1.15]">
                 A spa built around the person on the table.
               </h2>
-              <p className="mt-6 max-w-xl text-base leading-relaxed text-pretty text-muted-foreground">
-                Most spas hand you a laminated list and hope you pick something.
+              <p className="mt-6 text-base leading-relaxed text-pretty text-muted-foreground">
+                Most spas hand you a laminated menu and hope you pick something.
                 We would rather understand what your body has been through this
-                week — then choose the treatment together.
+                week — whether it is muscle stiffness from long work hours, post-workout fatigue, or daily stress.
               </p>
+              <p className="mt-4 text-sm leading-relaxed text-pretty text-muted-foreground">
+                Every single treatment begins with a brief personal consultation.
+                The pressure, choice of essential oil blend, and exact target zones are set by you before we begin.
+              </p>
+              <div className="mt-8">
+                <Link
+                  href="/about"
+                  className={cn(
+                    buttonVariants({ variant: "link", size: "sm" }),
+                    "h-auto px-0 font-semibold text-accent hover:text-accent/80",
+                  )}
+                >
+                  More about Dream Spa
+                  <ArrowRight aria-hidden="true" className="size-4" />
+                </Link>
+              </div>
             </Reveal>
+          </div>
+        </div>
 
-            <ul className="mt-12 flex flex-col">
-              {principles.map((item, index) => (
-                <Reveal as="li" index={index} key={item.title}>
-                  <div className="flex flex-col gap-3 border-t border-clay py-7 sm:flex-row sm:gap-10">
-                    <span className="eyebrow shrink-0 pt-1 text-accent sm:w-16">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                    <div className="flex flex-col gap-2">
-                      <h3 className="display text-xl">{item.title}</h3>
-                      <p className="max-w-lg text-sm leading-relaxed text-pretty text-muted-foreground">
-                        {item.body}
-                      </p>
+        {/* Bottom Row: 3 Principles in 3 Columns */}
+        <div className="pt-6 lg:pt-10">
+          <div className="grid grid-cols-1 gap-10 text-center sm:grid-cols-3 sm:gap-8 lg:gap-12">
+            {principles.map((item, index) => {
+              const Icon = item.icon
+              return (
+                <Reveal index={index} key={item.title}>
+                  <div className="flex flex-col items-center text-center">
+                    <div className="mb-5 flex size-16 items-center justify-center rounded-full border border-clay/60 bg-background text-accent shadow-xs">
+                      <Icon className="size-7" />
                     </div>
+                    <h3 className="display font-serif text-xl font-medium text-foreground sm:text-2xl">
+                      {item.title}
+                    </h3>
+                    <p className="mt-3 max-w-sm text-sm leading-relaxed text-muted-foreground">
+                      {item.body}
+                    </p>
                   </div>
                 </Reveal>
-              ))}
-            </ul>
-
-            <Reveal index={3}>
-              <Link
-                href="/about"
-                className={cn(
-                  buttonVariants({ variant: "link", size: "sm" }),
-                  "mt-8 h-auto self-start px-0",
-                )}
-              >
-                More about Dream Spa
-                <ArrowRight aria-hidden="true" />
-              </Link>
-            </Reveal>
+              )
+            })}
           </div>
         </div>
       </div>

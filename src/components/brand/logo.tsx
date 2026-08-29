@@ -35,18 +35,18 @@ export function Logo({ tone = "ink", className, markOnly = false }: LogoProps) {
         <span className="flex flex-col leading-none">
           <span
             className={cn(
-              "display text-xl tracking-[0.06em] uppercase sm:text-2xl",
-              tone === "light" ? "text-primary-foreground" : "text-foreground",
+              "display text-xl tracking-[0.06em] uppercase sm:text-2xl font-serif",
+              tone === "light" ? "text-primary-foreground" : "text-foreground font-medium",
             )}
           >
             Dream Spa
           </span>
           <span
             className={cn(
-              "eyebrow mt-1.5 text-[0.625rem] tracking-[0.24em]",
+              "eyebrow mt-1.5 text-[0.625rem] tracking-[0.24em] font-semibold",
               tone === "light"
-                ? "text-primary-foreground/60"
-                : "text-muted-foreground",
+                ? "text-primary-foreground/75"
+                : "text-foreground/90",
             )}
           >
             Ahmedabad

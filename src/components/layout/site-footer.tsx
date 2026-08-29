@@ -6,10 +6,53 @@ import { primaryNav } from "@/data/navigation"
 import { services } from "@/data/services"
 import { site } from "@/data/site"
 
+const socialIcons: Record<string, React.ReactNode> = {
+  Instagram: (
+    <svg
+      aria-hidden="true"
+      className="size-4.5 fill-none stroke-current stroke-[2]"
+      viewBox="0 0 24 24"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+    </svg>
+  ),
+  Facebook: (
+    <svg
+      aria-hidden="true"
+      className="size-4.5 fill-current"
+      viewBox="0 0 24 24"
+    >
+      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+    </svg>
+  ),
+  Google: (
+    <svg
+      aria-hidden="true"
+      className="size-4.5 fill-current"
+      viewBox="0 0 24 24"
+    >
+      <path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z" />
+    </svg>
+  ),
+  Justdial: (
+    <Image
+      src="/JD.svg"
+      alt="Justdial"
+      width={20}
+      height={15}
+      className="size-4.5 object-contain opacity-90 transition-opacity hover:opacity-100"
+    />
+  ),
+}
+
 export function SiteFooter() {
   return (
     <footer className="bg-light-red-bg text-light-red-fg">
-      <div className="shell py-16 lg:py-20">
+      <div className="shell py-16 pb-24 lg:py-20">
         <div className="flex flex-col gap-14 lg:flex-row lg:justify-between">
           <div className="max-w-sm">
             <Image
@@ -23,23 +66,24 @@ export function SiteFooter() {
               A quiet beauty and wellness spa in Gurukul, Ahmedabad. Personalised
               therapies, trained therapists, private rooms.
             </p>
-            <div className="mt-7 flex flex-wrap gap-x-6 gap-y-2">
+            <div className="mt-7 flex items-center gap-3">
               {site.social.map((item) => (
                 <a
                   key={item.label}
                   href={item.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="eyebrow text-light-red-fg/60 transition-colors hover:text-light-red-fg"
+                  aria-label={item.label}
+                  className="flex size-10 items-center justify-center rounded-full border border-light-red-fg/20 text-light-red-fg/75 transition-all duration-200 hover:border-light-red-fg hover:bg-light-red-fg/10 hover:text-light-red-fg"
                 >
-                  {item.label}
+                  {socialIcons[item.label] || item.label}
                 </a>
               ))}
             </div>
           </div>
 
-          <div className="flex flex-col gap-12 sm:flex-row sm:gap-16 lg:gap-24">
-            <nav aria-label="Footer" className="flex flex-col gap-4">
+          <div className="grid grid-cols-1 gap-12 min-[415px]:grid-cols-2 min-[415px]:gap-x-8 min-[415px]:gap-y-12 sm:grid-cols-3 sm:gap-8 lg:flex lg:gap-24">
+            <nav aria-label="Footer" className="flex flex-col gap-4 min-[415px]:col-span-1 sm:col-span-1">
               <h2 className="eyebrow text-light-red-fg/50">Explore</h2>
               {primaryNav.map((link) => (
                 <Link
@@ -52,7 +96,7 @@ export function SiteFooter() {
               ))}
             </nav>
 
-            <nav aria-label="Treatments" className="flex flex-col gap-4">
+            <nav aria-label="Treatments" className="flex flex-col gap-4 min-[415px]:col-span-1 sm:col-span-1">
               <h2 className="eyebrow text-light-red-fg/50">Treatments</h2>
               {services.slice(0, 6).map((service) => (
                 <Link
@@ -65,7 +109,7 @@ export function SiteFooter() {
               ))}
             </nav>
 
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-4 min-[415px]:col-span-2 sm:col-span-1">
               <h2 className="eyebrow text-light-red-fg/50">Visit</h2>
               <address className="flex items-start gap-3 text-sm leading-relaxed text-light-red-fg/80 not-italic">
                 <MapPin
