@@ -14,7 +14,7 @@ export function FloatingQuickActions() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat on WhatsApp"
-        className="group relative flex size-12 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-xl active:scale-95"
+        className="group relative flex size-12 items-center justify-center rounded-full bg-gradient-to-br from-[#10b981] to-[#047857] text-white shadow-md shadow-[#10b981]/30 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-[#10b981]/40 active:scale-95"
       >
         <MessageCircle className="size-6 fill-current stroke-none" />
         <span className="pointer-events-none absolute left-full ml-3 -translate-x-1 whitespace-nowrap rounded-md bg-foreground px-3 py-1.5 text-xs font-semibold text-background opacity-0 shadow-md transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100">
