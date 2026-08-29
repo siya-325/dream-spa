@@ -175,6 +175,8 @@ export function ContactForm() {
   const [attemptedSubmit, setAttemptedSubmit] = useState(false)
   const [touched, setTouched] = useState<Record<string, boolean>>({})
 
+  const [serverError, setServerError] = useState<string | null>(null)
+
   const [formData, setFormData] = useState<FormFields>({
     name: "",
     phone: "",
@@ -194,9 +196,10 @@ export function ContactForm() {
     setFormData((prev) => ({ ...prev, [field]: value }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setAttemptedSubmit(true)
+    setServerError(null)
 
     const errors = validateForm(formData)
     const errorKeys = Object.keys(errors) as (keyof FormFields)[]
@@ -232,11 +235,30 @@ export function ContactForm() {
     }
     setFormData(trimmedData)
 
-    // Simulate submission flow
-    setTimeout(() => {
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(trimmedData),
+      })
+
+      const data = await res.json()
+
+      if (!res.ok || !data.success) {
+        setServerError(data.error || "Failed to submit inquiry. Please try again.")
+        setLoading(false)
+        return
+      }
+
       setLoading(false)
       setSubmitted(true)
-    }, 800)
+    } catch (err) {
+      console.error("Submission error:", err)
+      setServerError("Network error. Please check your connection and try again.")
+      setLoading(false)
+    }
   }
 
   const getFieldError = (field: keyof FormFields): string | undefined => {
@@ -319,6 +341,12 @@ export function ContactForm() {
                     onSubmit={handleSubmit}
                     className="flex flex-col gap-6"
                   >
+                    {serverError && (
+                      <div className="rounded-md border border-red-500/30 bg-red-500/10 p-4 text-xs font-medium text-red-700 dark:text-red-400">
+                        {serverError}
+                      </div>
+                    )}
+
                     <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                       {/* Name */}
                       <div className="flex flex-col gap-2">
